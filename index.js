@@ -30,7 +30,8 @@ restService.post("/chatbot", function(req, res) {
       }
     }
   ],
-  "source": "<webhookpn1>"
+  "source": "<webhookinra>",
+  "request": req
 
 
   });

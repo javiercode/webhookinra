@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request-promise");
+// const request = require("request-promise");
 
 const restService = express();
 

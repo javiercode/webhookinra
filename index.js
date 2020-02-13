@@ -19,7 +19,7 @@ restService.post("/chatbot", function(req, res) {
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
       ? req.body.queryResult.parameters.echoText
-      : "Existe un problema."+req.body;
+      : "Existe un problema: ."+req.body;
   return res.json({
 
   "fulfillmentText": speech,
@@ -30,8 +30,8 @@ restService.post("/chatbot", function(req, res) {
       }
     }
   ],
-  "source": "<webhookinra>",
-  "request": req
+  "source": "<webhookinra>"
+  // "request": req
 
 
   });

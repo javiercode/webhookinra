@@ -21,9 +21,9 @@ restService.post("/chatbot", function(req, res) {
   var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+req.body.queryResult.queryText;
 
   request({url:ruta,json:true},function (error, response, body) {
-      console.log(body['razonSocial']);
-      speech = body['razonSocial']?body['razonSocial']:'no tenemos informacion relacionada';
-
+      // console.log(body);
+      console.log(body['parcela']);
+      speech = body['parcela']?body['parcela']:'no tenemos informacion relacionada';
       return res.json({
           "fulfillmentText": speech,
           "fulfillmentMessages": [

@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-// const request = require("request-promise");
+const request = require("request");
 
 const restService = express();
 
@@ -17,7 +17,26 @@ restService.use(bodyParser.json());
 
 restService.post("/chatbot", function(req, res) {
   var speech =req.body.queryResult.queryText;
-  var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+req.body.queryResult.queryText;
+  var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+req.body.queryResult.queryText;
+  // var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+req.body.queryResult.queryText;
+
+  request({url:ruta,json:true},function (error, response, body) {
+      console.log(body['razonSocial']);
+      speech = body['razonSocial']?body['razonSocial']:'no tenemos informacion relacionada';
+
+      return res.json({
+          "fulfillmentText": speech,
+          "fulfillmentMessages": [
+              {
+                  "text": {
+                      "text": [speech]
+                  }
+              }
+          ],
+          "source": "<webhookinra>"
+      });
+  });
+
 
   // request({
   //     uri: RUTA,
@@ -33,21 +52,7 @@ restService.post("/chatbot", function(req, res) {
     //   ? req.body.queryResult.queryText
     //   : "Existe un problema: ."+req.body;
 
-  return res.json({
 
-  "fulfillmentText": speech,
-  "fulfillmentMessages": [
-    {
-      "text": {
-        "text": [speech]
-      }
-    }
-  ],
-  "source": "<webhookinra>"
-  // "request": req
-
-
-  });
 });
 
 

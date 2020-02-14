@@ -19,19 +19,19 @@ restService.post("/chatbot", function(req, res) {
     var aNroTitulo=req.body.queryResult.queryText.split(':');
     if(aNroTitulo.length==2){
         var nroTitulo = aNroTitulo[1];
+        nroTitulo= nroTitulo.trim();
+
+        console.log("*"+nroTitulo+"*");
         var speech =req.body.queryResult.queryText;
-        // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
-        var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
+        var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
+        // var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
 
 
         request({url:ruta,json:true},function (error, response, body) {
             console.log(body);
-            console.log(body['parcela']);
-            var nroDocumento = body['numeroDocumento']?body['numeroDocumento']:'no tenemos informacion relacionada';
+            // console.log(body['parcela']);
 
-            speech = body['parcela']?body['parcela']:'no tenemos informacion relacionada';
-
-            if(body['numeroDocumento']!=null){
+            if(body!=null){
                 var nombre = body['parcela']?body['parcela']:'S/N';
                 var superficie = body['supCodCat']?body['supCodCat']:'S/N';
                 var clasificacion = body['clasificacion']?body['clasificacion']:'S/N';

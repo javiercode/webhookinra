@@ -19,8 +19,7 @@ restService.post("/chatbot", function(req, res) {
     var aNroTitulo=req.body.queryResult.queryText.split(':');
     if(aNroTitulo.length==2){
         var nroTitulo = aNroTitulo[1];
-        nroTitulo= nroTitulo.trim();
-
+        nroTitulo= nroTitulo.trim().toUpperCase().replace('-','');
         console.log("*"+nroTitulo+"*");
         var speech =req.body.queryResult.queryText;
         // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;

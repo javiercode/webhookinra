@@ -23,8 +23,8 @@ restService.post("/chatbot", function(req, res) {
 
         console.log("*"+nroTitulo+"*");
         var speech =req.body.queryResult.queryText;
-        var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
-        // var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
+        // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
+        var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
 
 
         request({url:ruta,json:true},function (error, response, body) {

@@ -21,6 +21,7 @@ restService.post("/chatbot", function(req, res) {
     var aQueryText=req.body.queryResult.queryText.split(':');
     if(aQueryText.length==2){
         var parametro=req.body.queryResult.parameters.comodin;
+        parametro= parametro.trim().toLowerCase().replace(':','');
         switch (parametro){
             case 'titulo':
                 var nroTitulo = aQueryText[1];

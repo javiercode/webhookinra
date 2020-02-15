@@ -26,8 +26,8 @@ restService.post("/chatbot", function(req, res) {
             case 'titulo':
                 var nroTitulo = aQueryText[1];
                 nroTitulo= nroTitulo.trim().toUpperCase().replace('-','');
-                // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
-                var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
+                var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
+                // var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
 
                 request({url:ruta,json:true},function (error, response, body) {
                     // console.log(body);
@@ -35,7 +35,7 @@ restService.post("/chatbot", function(req, res) {
                     // console.log(body.mensajes.length);
                     // console.log(body.mensajes);
                     // console.log(body['parcela']);
-                    if(body.mensajes.length==0){
+                    if(body.mensajes && body.mensajes.length==0){
                         var nombre = body['parcela']?body['parcela']:'';
                         var superficie = body['supCodCat']?body['supCodCat']:'S/N';
                         var clasificacion = body['clasificacion']?body['clasificacion']:'S/N';
@@ -59,14 +59,14 @@ restService.post("/chatbot", function(req, res) {
             case 'ci':
                 var ci = aQueryText[1];
                 ci= ci.trim().toUpperCase().replace('-','');
-                // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad="+ci;
-                var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad=="+ci;
+                var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad="+ci;
+                // var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad=="+ci;
 
 
                 request({url:ruta,json:true},function (error, response, body) {
                     // console.log(body);
                     // console.log(body['parcela']);
-                    if(body.mensajes.length==0){
+                    if(body.mensajes && body.mensajes.length==0){
                         var nombre = body['nombre1']?body['nombre1']:'S/N';
                         var apellidoPaterno = body['apellidoPaterno']?body['apellidoPaterno']:'S/N';
                         var apellidoMaterno = body['apellidoMaterno']?body['apellidoMaterno']:'S/N';

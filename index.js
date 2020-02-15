@@ -55,8 +55,8 @@ restService.post("/chatbot", function(req, res) {
                 var ci = aQueryText[1];
                 ci= ci.trim().toUpperCase().replace('-','');
                 // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad="+ci;
-                var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad=="+ci;
-
+                var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad="+ci;
+                console.log(ruta);
 
                 request({url:ruta,json:true},function (error, response, body) {
                     // console.log(body);

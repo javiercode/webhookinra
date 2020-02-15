@@ -17,8 +17,8 @@ restService.use(bodyParser.json());
 
 restService.post("/chatbot", function(req, res) {
     var speech ='No se puede buscar el titulo solicitado.';
-
     var aQueryText=req.body.queryResult.queryText.split(':');
+
     if(aQueryText.length==2){
         var parametro=req.body.queryResult.parameters.comodin;
         parametro= parametro.trim().toLowerCase().replace(':','');
@@ -30,11 +30,6 @@ restService.post("/chatbot", function(req, res) {
                 var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
 
                 request({url:ruta,json:true},function (error, response, body) {
-                    // console.log(body);
-                    // console.log(nroTitulo);
-                    // console.log(body.mensajes.length);
-                    // console.log(body.mensajes);
-                    // console.log(body['parcela']);
                     if(body.mensajes && body.mensajes.length==0){
                         var nombre = body['parcela']?body['parcela']:'';
                         var superficie = body['supCodCat']?body['supCodCat']:'S/N';
@@ -117,24 +112,6 @@ restService.post("/chatbot", function(req, res) {
             "source": "<webhookinra>"
         });
     }
-
-
-
-
-  // request({
-  //     uri: RUTA,
-  //     json: true,
-  // }).then(res=>{
-  //     speech = res.estado;
-  // });
-
-    speech=ruta;
-    // req.body.queryResult &&
-    // req.body.queryResult.parameters &&
-    // req.body.queryResult.parameters.echoText
-    //   ? req.body.queryResult.queryText
-    //   : "Existe un problema: ."+req.body;
-
 
 });
 

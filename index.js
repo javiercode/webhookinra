@@ -98,14 +98,15 @@ restService.post("/chatbot", function(req, res) {
                     var numero = aHr[0];
                     var gestion= aHr[1];
                     // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad="+ci;
-                    var ruta = "http://sinra.inra.gob.bo:8104/api/sinadi/v1/hojaRuta/navegar?tipoDatoBusqueda=BNHG&pagina=0&cantidad=1&datoBusqueda=" +numero+"&datoBusqueda2="+gestion;
+                    var ruta = "http://sinra.inra.gob.bo:8104/api/sinadi/v1/hojaRutaBot/navegar?tipoDatoBusqueda=BNHG&pagina=0&cantidad=1&datoBusqueda=" +numero+"&datoBusqueda2="+gestion;
 
                     request({url:ruta,json:true},function (error, response, body) {
                         // console.log(body);
                         // console.log(body['parcela']);
                         if(body.listHojaRuta && body.listHojaRuta.length>0){
                             var referencia = body['listHojaRuta'][0]['referencia']?body['listHojaRuta'][0]['referencia']:'S/N';
-                            speech = 'REFERENCIA: '+referencia;
+                            var estado = body['estadoTramite'][0]['estadoTramite']?body['estadoTramite'][0]['estadoTramite']:'S/N';
+                            speech = 'REFERENCIA: '+referencia+'. ESTADO: '+estado;
                         }else{
                             speech = "No se encontró hojas de rutas con la información solicitada";
                         }

@@ -38,7 +38,7 @@ restService.post("/chatbot", function(req, res) {
         var parametro=req.body.queryResult.parameters.comodin;
         parametro= parametro.trim().toLowerCase().replace(':','');
         switch (parametro){
-            case 'titulo':
+            case 'nro':
                 var nroTitulo = aQueryText[1];
                 nroTitulo= nroTitulo.trim().toUpperCase().replace('-','');
                 // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;

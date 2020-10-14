@@ -43,6 +43,7 @@ restService.post("/chatbot", function(req, res) {
                 nroTitulo= nroTitulo.trim().toUpperCase().replace('-','');
                 // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
                 var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/predio?nroTitulo="+nroTitulo;
+                console.log(ruta);
                 request({url:ruta,json:true},function (error, response, body) {
                     if(body.mensajes && body.mensajes.length==0){
                         var nombre = body['parcela']?body['parcela']:'';
@@ -71,7 +72,7 @@ restService.post("/chatbot", function(req, res) {
                 ci= ci.trim().toUpperCase().replace('-','');
                 // var ruta = "http://172.17.0.226:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad="+ci;
                 var ruta = "http://sinra.inra.gob.bo:8097/api/v1/extranet/movil/reporte/beneficiario?documentoIdentidad="+ci;
-
+                console.log(ruta);
                 request({url:ruta,json:true},function (error, response, body) {
                     // console.log(body);
                     // console.log(body['parcela']);
@@ -97,9 +98,7 @@ restService.post("/chatbot", function(req, res) {
                     var gestion= aHr[1];
                     var ruta = "http://sinra.inra.gob.bo:8104/api/sinadi/v1/hojaRutaBot/navegar?tipoDatoBusqueda=BNHG&pagina=0&cantidad=1&datoBusqueda=" +numero+"&datoBusqueda2="+gestion;
                     // var ruta = "http://172.17.0.226:8104/api/sinadi/v1/hojaRutaBot/navegar?tipoDatoBusqueda=BNHG&pagina=0&cantidad=1&datoBusqueda=" +numero+"&datoBusqueda2="+gestion;;
-
-
-
+                    console.log(ruta);
                     request({url:ruta,json:true},function (error, response, body) {
                         // console.log(body['parcela']);
                         if(body.listHojaRuta && body.listHojaRuta.length>0){

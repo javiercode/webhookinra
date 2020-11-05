@@ -15,6 +15,11 @@ restService.use(
 
 restService.use(bodyParser.json());
 
+restService.engine('html', require('ejs').renderFile);
+restService.get('/politica', function(req, res){
+    res.render('politica.html');
+ });
+
 restService.post("/chatbot", function(req, res) {
     var speech ='No se puede buscar el titulo solicitado.';
     var aQueryText=req.body.queryResult.queryText.split(':');

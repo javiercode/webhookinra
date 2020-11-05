@@ -3,6 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
+const path = require('path');
+const router = express.Router();
 
 const restService = express();
 
@@ -15,10 +17,11 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-restService.engine('html', require('ejs').renderFile);
-restService.get('/politica', function(req, res){
-    res.render('politica.html');
- });
+
+
+restService.get("/politica", function(req, res) {
+  res.sendFile(path.join(__dirname+'/politica.html'));
+});
 
 restService.post("/chatbot", function(req, res) {
     var speech ='No se puede buscar el titulo solicitado.';
